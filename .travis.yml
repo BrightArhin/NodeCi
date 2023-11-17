@@ -1,21 +1,27 @@
 language: node_js
 node_js:
-  - '8'
+  - '14' # or a more recent version
+
 dist: trusty
+
 services:
   - mongodb
   - redis-server
+
 env:
   - NODE_ENV=ci
   - PORT=3000
+
 cache:
   directories:
     - node_modules
     - client/node_modules
+
 install:
   - npm install
   - npm run build
+
 script:
-  - nohup npm run start &
+  - npm start & # Adjust this line based on your application's start command
   - sleep 10
   - npm run test
