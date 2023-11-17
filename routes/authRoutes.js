@@ -1,10 +1,10 @@
 const passport = require('passport');
 
-module.exports = app => {
+module.exports = (app) => {
   app.get(
     '/auth/google',
     passport.authenticate('google', {
-      scope: ['profile', 'email']
+      scope: ['profile', 'email'],
     })
   );
 
@@ -12,6 +12,8 @@ module.exports = app => {
     '/auth/google/callback',
     passport.authenticate('google'),
     (req, res) => {
+      console.log(req?.user);
+      console;
       res.redirect('/blogs');
     }
   );
